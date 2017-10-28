@@ -1,0 +1,55 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
+
+class Landing extends Component {
+    state = { 
+        quote: null,
+        author: null
+    }
+
+    componentDidMount(){
+        this.props.fetchQuote();
+    }
+
+    componentWillReceiveProps({ quote }){
+        let random = Math.floor((Math.random() * 15) + 1);
+        let author = quote[random].title 
+        let content = quote[random].content.replace(/^"(.*)"$/, '$1').replace(/(&nbsp;|<([^>]+)>)/ig,"");
+        this.setState({ quote: content, author })
+    }
+
+    renderQuote(quote,author){
+        if(quote && author)
+            return (
+                <blockquote className="blockquote">
+                    <p className="mb-0 quote--text">{quote}</p>
+                    <footer className="blockquote-footer">{author}</footer>
+                </blockquote>
+          )
+    }
+
+
+    render() {
+    return (
+        <div className="container">
+            <h3>Welcome To Two-Way-Auth: "<span className="text-white"><strong>{this.props.email}</strong></span>"</h3> 
+            <p>Here is your quote:</p>
+            {this.renderQuote(this.state.quote,this.state.author)}
+            <button
+                className="btn btn-warning"
+                onClick={() => this.props.initLogout()}
+            >
+                Logout
+            </button>
+        </div>
+    )
+    }
+}
+
+const mapStateToProps = (state) => ({
+    email: state.auth.user.email,
+    quote: state.quoteReducer
+})
+
+export default connect(mapStateToProps,actions)(Landing);
