@@ -64,7 +64,7 @@ export const clearError = () => dispatch => {
 }
 
 export const fetchQuote = () => async dispatch => {
-    const res = await axios.get("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=15")
+    const res = await axios.get("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=15")
     console.log(res);
     dispatch({ type: "FETCH_QUOTE", payload: res.data })
 }
