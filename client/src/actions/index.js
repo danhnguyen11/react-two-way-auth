@@ -34,6 +34,7 @@ export const googleLogin = () => {
       let googleAuthProvider = new firebase.auth.GoogleAuthProvider();
       return firebase.auth().signInWithPopup(googleAuthProvider)
                 .catch((err) => {
+                    console.log(err);
                     return err;
                 })
     };
@@ -44,6 +45,7 @@ export const gitLogin = () => {
       let gitAuthProvider = new firebase.auth.GithubAuthProvider();
       return firebase.auth().signInWithPopup(gitAuthProvider)
                 .catch((err) => {
+                    console.log(err);
                     return err;
                 })
     };
