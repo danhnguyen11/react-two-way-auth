@@ -32,7 +32,7 @@ export const initLogout = () => {
 export const googleLogin = () => {
     return () => {
       let googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-      return firebase.auth().signInWithRedirect(googleAuthProvider)
+      return firebase.auth().signInWithPopup(googleAuthProvider)
                 .catch((err) => {
                     return err;
                 })
@@ -42,7 +42,7 @@ export const googleLogin = () => {
 export const gitLogin = () => {
     return () => {
       let gitAuthProvider = new firebase.auth.GithubAuthProvider();
-      return firebase.auth().signInWithRedirect(gitAuthProvider)
+      return firebase.auth().signInWithPopup(gitAuthProvider)
                 .catch((err) => {
                     return err;
                 })
