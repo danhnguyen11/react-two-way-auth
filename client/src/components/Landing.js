@@ -8,15 +8,12 @@ class Landing extends Component {
         author: null
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.props.fetchQuote();
     }
 
     componentWillReceiveProps({ quote }){
-        let random = Math.floor((Math.random() * 15) + 1);
-        let author = quote[random].title 
-        let content = quote[random].content.replace(/^"(.*)"$/, '$1').replace(/(&nbsp;|<([^>]+)>)/ig,"");
-        this.setState({ quote: content, author })
+       this.setState({ quote: quote.content, author: quote.author })
     }
 
     renderQuote(quote,author){
@@ -49,7 +46,7 @@ class Landing extends Component {
 
 const mapStateToProps = (state) => ({
     email: state.auth.user.email,
-    quote: state.quoteReducer
+    quote: state.quoteReducer.quote
 })
 
 export default connect(mapStateToProps,actions)(Landing);

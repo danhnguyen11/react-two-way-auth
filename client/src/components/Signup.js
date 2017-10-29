@@ -24,7 +24,7 @@ class Signup extends Component {
 
     onFormSubmit(values){
         this.props.clearError();        
-        this.props.initSignUp(values);
+        setTimeout(() => this.props.initSignUp(values), 1250);
         this.setState({ loading: true });
     }
     
@@ -41,7 +41,7 @@ class Signup extends Component {
                     </div>
                 </span>
                 ) :
-            (<i className="fa fa-spinner" aria-hidden="true"></i>)
+            (<div className="text-center"><i className="fa fa-spinner fa-spin fa-2x fa-fw fa-align-center" aria-hidden="true"></i></div>)
         )
     }
 

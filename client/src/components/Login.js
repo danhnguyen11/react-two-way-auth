@@ -28,7 +28,7 @@ class Login extends Component {
 
     onFormSubmit(values){
         this.props.clearError();
-        this.props.initLogin(values);
+        setTimeout(() => this.props.initLogin(values), 1250);
         this.setState({ loading: true });
     }
     
@@ -44,8 +44,8 @@ class Login extends Component {
                         <Link className="btn btn-success form-control" to="/signup">Need SignUp?</Link>
                     </div>
                 </span>
-            ) :
-            (<i className="fa fa-spinner" aria-hidden="true"></i>)
+            ) : 
+            (<div className="text-center"><i className="fa fa-spinner fa-spin fa-2x fa-fw fa-align-center" aria-hidden="true"></i></div>)
         )
     }
 
